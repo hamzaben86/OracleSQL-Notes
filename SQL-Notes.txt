@@ -1,0 +1,46 @@
+SELECT *
+FROM emp;
+
+SELECT DISTINCT job
+FROM emp;
+
+SELECT *
+FROM emp
+WHERE JOB = 'MANAGER';
+
+SELECT *
+FROM emp
+WHERE JOB = 'MANAGER' 
+AND SAL >= 2000
+AND DEPTNO = 10;
+
+SELECT ... [Run last and keeps selected columns]
+FROM ... [Run first to locate table] 
+WHERE ... AND .. [Run second and keeps rows where conditions are met]
+
+SELECT *
+FROM EMP
+WHERE JOB != 'SALESMAN';
+
+SELECT *
+FROM EMP
+WHERE COMM > SAL;
+
+SELECT * 
+FROM EMP
+WHERE JOB != 'MANAGER'
+AND SAL > 2500
+AND DEPTNO = 20;
+
+SELECT * 
+FROM EMP
+WHERE JOB = 'PRESIDENT' 
+OR JOB = 'ANALYST';
+
+SELECT ENAME
+FROM EMP
+WHERE JOB != 'MANAGER' 
+AND JOB != 'SALESMAN'
+AND SAL >= 2000;
+
+
