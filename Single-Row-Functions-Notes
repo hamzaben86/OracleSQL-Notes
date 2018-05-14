@@ -1,0 +1,7 @@
+-- Single Row Functions
+SELECT CONCAT('My name is: ', ENAME) AS NAME
+FROM EMP;
+
+SELECT upper('hello')
+FROM DUAL; -- single record, used to test functions
+
