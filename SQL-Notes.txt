@@ -90,4 +90,37 @@ WHERE JOB LIKE 'S%'
 SELECT * FROM EMP
 WHERE JOB LIKE '%GER'
 
+SELECT * 
+FROM suppliers
+WHERE supplier_name like '%wo%'
+AND (supplier_name like '%i%' OR supplier_name like '%I%');
+
+SELECT supplier_name, state
+FROM suppliers
+WHERE state IN ('Georgia', 'Alaska')
+AND supplier_id 100 OR supplier_id > 600
+AND total_spent < 100000 OR total_spent = 220000;
+
+SELECT ENAME EMPLOYEE, SAL SALARY, COMM COMMISSION
+FROM EMP
+
+SELECT ENAME AS "EMPLOYEE NAME", SAL AS SALARY, COMM AS COMMISSION
+FROM EMP
+
+SELECT 'My name is ' || ENAME || ' and I am manager at Corp Inc.' AS "MANAGERS at Corp Inc."
+FROM EMP
+WHERE JOB = 'MANAGER';
+
+SELECT 'My name is ' || ENAME || ', I am manager at Corp Inc and my salary is ' || SAL AS "Manager Salaries at Corp Inc."
+FROM EMP
+WHERE JOB = 'MANAGER';
+
+SELECT ENAME ,SAL
+FROM EMP
+ORDER BY SAL DESC
+
+SELECT *
+FROM EMP
+ORDER BY DEPTNO, SAL DESC
+
 
