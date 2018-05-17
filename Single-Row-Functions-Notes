@@ -5,3 +5,56 @@ FROM EMP;
 SELECT upper('hello')
 FROM DUAL; -- single record, used to test functions
 
+SELECT lower(ENAME)
+FROM EMP;
+
+SELECT CONCAT(CONCAT(CONCAT(lower(ename), upper(' is their name')), lower(' and their job is: ')), upper(JOB)) AS SOL
+FROM EMP;
+
+SELECT INITCAP('hello world')
+FROM DUAL;
+
+SELECT LENGTH(ENAME) AS LENGTH
+FROM EMP;
+
+SELECT SUBSTR('HELLO', 2, 2)
+FROM DUAL;
+
+SELECT 'HELLO MY NAME IS', SUBSTR('HELLO MY NAME IS', 3)
+FROM DUAL;
+
+SELECT LPAD('DAY', 6, '$') -- add padding to the left of the first argument
+FROM DUAL;
+-- output: $$$DAY
+
+SELECT ROUND(12.12876, 2)
+FROM DUAL;
+
+SELECT ROUND(12.12876)
+FROM DUAL;
+
+SELECT TRUNC(12.12876,2)
+FROM DUAL;
+
+SELECT SYSDATE
+FROM DUAL;
+
+SELECT SYSTIMESTAMP
+FROM DUAL;
+
+SELECT ADD_MONTHS(SYSDATE, 8)
+FROM DUAL;
+
+SELECT ADD_MONTHS('01/16/2019', 8)
+FROM DUAL;
+
+SELECT MONTHS_BETWEEN(SYSDATE, '11/16/2018')
+FROM DUAL;
+
+SELECT ename, hiredate, TRUNC(hiredate, 'MONTH')
+FROM EMP;
+
+SELECT ename, hiredate, TRUNC(hiredate, 'MONTH')
+FROM EMP
+WHERE TRUNC(hiredate, 'YEAR') = '01/01/1981'
+
