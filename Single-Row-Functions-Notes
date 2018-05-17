@@ -79,5 +79,11 @@ last_day is a date function that requires a date as an argument. It returns the 
 NEXT_DAY(d, c)
 The first argument is the date and the second argument is a text reference to a day of the week. Both arguments are required for this function to work properly. This function returns a valid date representing the first occurrence of the c day following the date represented in d. 
 
-SELECT ENAME, JOB, SAL, NVL(TO_CHAR(COMM), 'NO DATA PRESENT') AS COMM
+SELECT ENAME, JOB, SAL, NVL(TO_CHAR(COMM), 'NO DATA PRESENT') AS COMM -- Replace NaNs
 FROM EMP;
+
+SELECT ENAME, LENGTH(ENAME), NVL(TO_CHAR(NULLIF(LENGTH(ENAME), 5)), 'LENGTH IS 5')
+FROM EMP
+WHERE SAL > 2000;
+
+CONCAT(​CONCAT(LEFT(upper(ENAME), 1)​, '-'), RIGHT(upper(ENAME)​, 3)​) 
