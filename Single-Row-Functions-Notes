@@ -58,3 +58,26 @@ SELECT ename, hiredate, TRUNC(hiredate, 'MONTH')
 FROM EMP
 WHERE TRUNC(hiredate, 'YEAR') = '01/01/1981'
 
+SELECT TO_CHAR(SYSDATE, 'Month DD, YYYY') -- use to display information in a set format
+FROM DUAL;
+
+SELECT TO_CHAR(SYSDATE, 'Month DD, YYYY') -- use to display information in a set format
+FROM DUAL;
+
+SELECT TO_CHAR(SAL, '$999,999.00')
+FROM EMP;
+
+SELECT TO_DATE('2012-08-27', 'YYYY-MM-DD') --convert string to a date format
+FROM DUAL;
+
+SELECT TO_DATE('3 OF JUNE, 2008', 'DD "OF" MM, YYYY') --convert string to a date format
+FROM DUAL;
+
+LAST_DAY(d)
+last_day is a date function that requires a date as an argument. It returns the last day of the month in which the given date falls. The argument is required for this function to work properly.
+
+NEXT_DAY(d, c)
+The first argument is the date and the second argument is a text reference to a day of the week. Both arguments are required for this function to work properly. This function returns a valid date representing the first occurrence of the c day following the date represented in d. 
+
+SELECT ENAME, JOB, SAL, NVL(TO_CHAR(COMM), 'NO DATA PRESENT') AS COMM
+FROM EMP;
