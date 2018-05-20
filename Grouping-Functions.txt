@@ -1,0 +1,39 @@
+SELECT MIN(SAL) 
+FROM EMP
+
+SELECT SUM(SAL) 
+FROM EMP
+
+SELECT COUNT(*)
+FROM EMP
+
+SELECT SUM(SAL)/COUNT(*)
+FROM EMP
+
+SELECT AVG(SAL), JOB
+FROM EMP
+GROUP BY JOB
+ORDER BY AVG(SAL) DESC
+
+SELECT MAX(SAL), JOB
+FROM EMP
+GROUP BY JOB
+
+-- You cannot use group functions in the WHERE clause (only single row functions)
+-- For group functions, HAVING must be used. HAVING is like WHERE, but it works on logical statements involving aggregations
+
+SELECT COUNT(*), JOB
+FROM EMP
+WHERE JOB = 'ANALYST'
+GROUP BY JOB
+HAVING COUNT(*) = 2
+
+SELECT DEPTNO
+FROM EMP
+GROUP BY DEPTNO
+HAVING COUNT(*) > 3
+
+SELECT DEPTNO, JOB, COUNT(*)
+FROM EMP
+GROUP BY DEPTNO, JOB
+
