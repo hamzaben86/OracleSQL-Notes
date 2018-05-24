@@ -73,7 +73,7 @@ ON emp.deptno = dept.deptno
 
 e.* -- return all columns in table e
 
--- WHERE EXISTS clause
+-- WHERE EXISTS clause -- Not very efficient and slow
 SELECT *
 FROM EMP
 WHERE EXISTS (SELECT * FROM EMP WHERE JOB='MANAGER') -- Condition met if EXISTS query returns some data
@@ -82,5 +82,15 @@ SELECT *
 FROM EMP
 WHERE NOT EXISTS (SELECT * FROM EMP WHERE JOB='PROGRAMMER')
 
+SELECT d.*
+FROM dept d
+WHERE EXISTS (SELECT * FROM emp WHERE d.deptno = emp.deptno)
 
+SELECT d.*
+FROM dept d
+WHERE NOT EXISTS (SELECT * FROM emp WHERE d.deptno = emp.deptno)
 
+SELECT d.*
+FROM dept d
+WHERE NOT EXISTS (SELECT * FROM emp WHERE d.deptno = emp.deptno)
+OR loc = 'CHICAGO'
