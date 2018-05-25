@@ -37,3 +37,9 @@ SELECT DEPTNO, JOB, COUNT(*)
 FROM EMP
 GROUP BY DEPTNO, JOB
 
+SELECT col_1, col_2, col_3, group_function(aggregate_expression)
+FROM tables
+[Where conditions]
+GROUP BY col_1, col_2, col_3,..., col_n
+[ORDER BY conditions]
+

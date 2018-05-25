@@ -1,0 +1,10 @@
+-- Objects in SQL
+-- Primary Key in a Table: unique identifier for a particular record in a table
+	-- Cannot be duplicated (ie must be unique) & must be non-null
+-- Primary keys are not compulsory but it is good practice to have a Primary Key for each table
+
+CREATE TABLE stores (
+  store_id number NOT NULL, -- primary key
+  city VARCHAR(50) -- text, 50 characters max
+);
+
