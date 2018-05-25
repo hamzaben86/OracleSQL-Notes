@@ -8,3 +8,49 @@ CREATE TABLE stores (
   city VARCHAR(50) -- text, 50 characters max
 );
 
+INSERT INTO stores (store_id, city) -- APEX has implicit COMMIT of the command(s)
+VALUES(1, 'San Francisco');
+
+INSERT INTO stores (store_id, city) 
+VALUES(2, 'New York')
+
+-- Mutiple data entries
+INSERT ALL
+  INTO stores (store_id, city) VALUES (4, 'Philadelphia')
+  INTO stores (store_id, city) VALUES (5, 'Boston')
+  INTO stores (store_id, city) VALUES (5, 'Seattle')
+SELECT * FROM DUAL;
+
+-- Defining the Primary Key constraint
+CREATE TABLE products (
+  product_id NUMBER NOT NULL,
+  name VARCHAR(50),
+  product_cost NUMBER(5,2),
+  product_retail NUMBER(5,2),
+  product_type VARCHAR(10),
+  store_id NUMBER NOT NULL,
+
+  CONSTRAINT product_pk PRIMARY KEY(product_id)
+)
+
+INSERT INTO products VALUES (1011, '', 4.00, 8.00, 'Clothing', 3);
+
+-- To see a particular TABLE's properties
+DESCRIBE products
+
+-- To delete a particular entry
+DELETE FROM products
+WHERE product_id = 1011; 
+
+-- To modify the properties of a column (e.g. to no longer allow NULL values to be entered)
+ALTER TABLE products
+MODIFY name VARCHAR2(50) NOT NULL;
+
+ALTER TABLE products -- more than one column at a time
+MODIFY (product_cost NUMBER(5,2) NOT NULL,
+        product_retail NUMBER(5,2) NOT NULL
+)
+
+ALTER TABLE products
+RENAME COLUMN name TO product_name
+
