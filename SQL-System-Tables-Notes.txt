@@ -1,0 +1,57 @@
+-- System Tables to see ALL tables
+SELECT *
+FROM all_tables;
+
+-- to limit number of rows returned by the query
+SELECT *
+FROM all_tables
+WHERE ROWNUM < 10;
+
+-- System Tables to see ALL columns and associate table
+SELECT *
+FROM all_tab_columns;
+
+-- All Objects
+SELECT *
+FROM all_objects
+WHERE owner = 'ADMINTEST';
+
+-- To see the objects in your current database
+SELECT *
+FROM user_objects
+
+-- Creating Synonyms (pointers)
+CREATE SYNONYM emp_table
+FOR employees;
+
+SELECT *
+FROM sys.V_$VerSION
+
+-- SQL Commands Types
+DML = (SELECT, UPDATE, INSERT, DELETE, etc) -- (Data Manipulation Language)
+DDL = (CREATE, DROP, etc) -- (data Definition Language)
+DCL = (GRANT, REVOKE, ROLE) -- (Data Control Language)
+
+Admin Privileges
+Schema = User
+
+GRANT SELECT, UPDATE, DELETE 
+ON table_products TO user_1, user_2;
+
+REVOKE SELECT, UPDATE, DELETE 
+ON table_products FROM user_1, user_2;
+
+-- Creating New Users
+CREATE ROLE r1;
+
+GRANT p1, p2, p3 -- list of privileges
+TO r1;
+
+ALTER user user_x 
+
+-- To know which user/schema you are
+SHOW USER -- in typical SQL+ 
+SELECT sys_context('userenv', 'current_schema') -- in ApexSQL
+FROM DUAL;
+
+DEFAULT ROLE r1; -- user_x has the role r1

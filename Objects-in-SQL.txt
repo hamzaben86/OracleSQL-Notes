@@ -21,6 +21,8 @@ INSERT ALL
   INTO stores (store_id, city) VALUES (5, 'Seattle')
 SELECT * FROM DUAL;
 
+INSERT INTO products VALUES (1011, '', 4.00, 8.00, 'Clothing', 3);
+
 -- Defining the Primary Key constraint
 CREATE TABLE products (
   product_id NUMBER NOT NULL,
@@ -33,7 +35,9 @@ CREATE TABLE products (
   CONSTRAINT product_pk PRIMARY KEY(product_id)
 )
 
-INSERT INTO products VALUES (1011, '', 4.00, 8.00, 'Clothing', 3);
+-- Adding Primary Key in an existing table
+ALTER TABLE stores
+ADD CONSTRAINT PK_stores PRIMARY KEY (store_id);
 
 -- To see a particular TABLE's properties
 DESCRIBE products
@@ -53,4 +57,77 @@ MODIFY (product_cost NUMBER(5,2) NOT NULL,
 
 ALTER TABLE products
 RENAME COLUMN name TO product_name
+
+-- Pull information from one table and CREATE another table
+CREATE TABLE employees AS
+SELECT empno, ename, job, hiredate, sal comm
+FROM emp;
+
+ALTER TABLE employees
+ADD store_id number;	-- cannot add NOT NULL condition as it will conflict 
+  						-- with the fact that the new column is indeed null at creation
+
+ -- Update a specific column
+UPDATE employees
+SET store_id = 3
+WHERE ename IN ('KING', 'BLAKE')
+
+ALTER TABLE employees
+MODIFY store_id NOT NULL;
+
+DELETE FROM dept
+WHERE deptno = 40;
+
+-- Delete a TABLE
+DROP TABLE dept; -- must be wary of primary/foreign key constraints
+
+-- Erase all data from a table
+TRUNCATE TABLE emp;
+
+-- ALTERING CONSTRAINTS
+ALTER TABLE emp
+DROP CONSTRAINT SYST_C004
+
+-- CREATING an indexes improves computational efficiency when running queries
+CREATE [UNIQUE] INDEX index_name
+ON table_name (col1, col2, ...)
+
+CREATE INDEX emp_name_idx
+ON employees (ename)
+
+CREATE INDEX emp_name_job_date_idx -- index associated with multiple cols
+ON employees (ename, job, hiredate)
+COMPUTE STATISTICS; -- optional: databases collects additional information on the columns to improve indexing
+
+CREATE UNIQUE INDEX emp_no_idx -- unique indexing for a column
+ON employees(empno)
+
+-- to alter an existing index to use COMPUTE STATISTICS
+ALTER INDEX emp_name_idx
+REBUILD COMPUTE STATISTICS
+
+DROP INDEX emp_name_job_date_idx;
+
+-- ROW ID: built-in unique identify for each row
+SELECT rowid, store_id, city
+FROM stores;
+
+-- a VIEW is a stored query (useful to save long/time consuming query previously run)
+CREATE VIEW managers_v AS
+  SELECT *
+  FROM EMPLOYEES
+  WHERE JOB = 'MANAGER';
+
+SELECT * FROM managers_v;
+
+CREATE VIEW highestpaid_v AS
+  SELECT ENAME as ename , MAX(SAL) as max_sal, DEPTNO as deptno
+  FROM emp
+  GROUP BY ENAME, DEPTNO
+  ORDER BY MAX(SAL) DESC;
+
+-- To see the views in your current database
+SELECT *
+FROM user_objects
+WHERE object_type = 'VIEW';
 

@@ -94,3 +94,19 @@ SELECT d.*
 FROM dept d
 WHERE NOT EXISTS (SELECT * FROM emp WHERE d.deptno = emp.deptno)
 OR loc = 'CHICAGO'
+
+-- UNION: Full Join without duplicates but commom columns must be included
+SELECT * FROM table_1
+UNION
+SELECT * FROM table_2
+
+-- UNION ALL: simply appends tables together
+SELECT * FROM table_1
+UNION ALL
+SELECT * FROM table_2
+
+-- MINUS: minuses the lower table from the upper table
+SELECT * FROM table_1
+MINUS
+SELECT * FROM table_2
+
